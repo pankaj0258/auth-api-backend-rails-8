@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./auth-api-backend-rails-8
+    container_name: rails-api
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
+    command: rails server -b 0.0.0.0 -p 3000
+
+  frontend:
+    build: ./auth-api-frontend-react-rails8
+    container_name: react-app
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
